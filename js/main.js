@@ -1,0 +1,1 @@
+let nom_user = prompt("Indiquenos su Nombre")
