@@ -2,29 +2,29 @@ let userName = prompt("Indiquenos su Nombre")
 
 const tasks = []
 
-taskOptions(userName)
+taskOptions(userName);
 
 
-const taskOptions = user=>{
-    let taskOption = confirm("Un gusto "+user+" ¿Desea agregar una tarea a su agenda?")
+function taskOptions(user) {
+    let taskOption = confirm("Un gusto " + user + " ¿Desea agregar una tarea a su agenda?");
     if (taskOption == true) {
-        let taskName = prompt("¿Que desea agendar").tolowerCase()
-        let taskDesc = prompt("Escribe una pequeña descripción").tolowerCase()
-        let taskDate = prompt("¿Cuando desea que se lo recordemos?").tolowerCase()
-        addTask(taskName, taskDesc, taskDate)
+        addTask(user);
+        let taskOption = false;
     } else {
-        let otherOption = prompt("¿Desea eliminar, marcar como completada o revisar tareas? (1/2/3)")
-        switch (parseInt(otherOption)){
+        let otherOption = prompt("¿Desea eliminar, marcar como completada o revisar tareas? (1/2/3)");
+        switch (parseInt(otherOption)) {
             case 1:
-                let delName = prompt("Ingrese el nombre de la tarea").tolowerCase()
-                delTask(delName)
-                break
+                delTask();
+                break;
             case 2:
-                compTask()
-                break
+                compTask();
+                break;
             case 3:
-                revTask()
-
+                revTask();
+                break;
+            default:
+                alert("Lo sentimos no es una opcion valida. Intentelo de nuevo");
+                break;
         }
     }
 }
@@ -32,39 +32,47 @@ const taskOptions = user=>{
 
 
 /* Funciones */
-const addTask = function(name,desc,date) {
-    while (addAgain) {
+function addTask(user) {
+    do {
+        let taskName = prompt("¿Que desea agendar?").toUpperCase();
+        let taskDesc = prompt("Escribe una pequeña descripción").toUpperCase();
+        let taskDate = prompt("¿Cuando desea que se lo recordemos?").toUpperCase();
         let task = {
-            nam: name,
-            descrp: desc,
-            date: date,
+            name: taskName,
+            descrp: taskDesc,
+            date: taskDate,
+            creator: user,
             completed: false
-        }
-        tasks.push(task)
-    }
-    let addAgain = confirm("¿Desea agregar otra?")
+        };
+        tasks.push(task);
+        console.log("Se agregó la tarea correctamente");
+    } while (confirm("¿Desea agregar otra?"))
 }
 
 
-const delTask = function(name) {
-    while (delAgain) {
-        let delId = tasks.indexOf(task[name])
-        tasks.pop(delId)
-    }
-    let delAgain = confirm("¿Desea eliminar otra?")
+function delTask() {
+    do {
+        let delName = prompt("Ingrese el nombre de la tarea").toUpperCase();
+        let delId = tasks.indexOf([delName]);
+        tasks.pop(delId);
+        console.log("Se eliminó la tarea correctamente");
+    } while (confirm("¿Desea eliminar otra?"))
 }
 
 
-const compTask = function(name) {
-    while (compAgain) {
-        let compId = tasks.indexOf(task[name])
-        tasks[compId].completed = true
-        
-    }
+function compTask() {
+    do {
+        let compName = prompt("Ingrese el nombre de la tarea").toUpperCase();
+        let compId = tasks.indexOf([compName]);
+        tasks[compId.completed] = true;
+        console.log("Se completada la tarea exitosamente");
+    } while (confirm("¿Desea marcar como completada otra?"))
 }
 
 
-const revTask = function() {
-
+function revTask() {
+    for(let i = 0 ; i <= tasks.length; i++) {
+        console.log(tasks.names)
+    }
 }
 
