@@ -4,7 +4,7 @@ const tasks = []
 
 taskOptions(userName);
 
-
+/* FUNCION PRINCIPAL */
 function taskOptions(user) {
     let taskOption = confirm("Un gusto " + user + " ¿Desea agregar una tarea a su agenda?");
     if (taskOption == true) {
@@ -31,7 +31,7 @@ function taskOptions(user) {
 
 
 
-/* Funciones */
+/* FUNCIONES ESPECIFICAS */
 function addTask(user) {
     do {
         let taskName = prompt("¿Que desea agendar?").toUpperCase();
@@ -75,4 +75,3 @@ function revTask() {
         console.log(tasks[i].name)
     }
 }
-
