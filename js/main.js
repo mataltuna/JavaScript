@@ -71,8 +71,8 @@ function compTask() {
 
 
 function revTask() {
-    for(let i = 0 ; i <= tasks.length; i++) {
-        console.log(tasks.names)
+    for(let i = 0 ; i < tasks.length; i++) {
+        console.log(tasks[i].name)
     }
 }
 
