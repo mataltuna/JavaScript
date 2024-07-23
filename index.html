@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="./js/main.js"></script>
-    <title>Matias Altuna</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>TaskTick</title>
 </head>
 <body>
-    <h1>Matias Altuna</h1>
+    <header>
+        <h1>TaskTick</h1>
+        <nav>
+            <ul id="headNav">
+                <li><a href="./index.html#add">Añadir tarea</a></li>
+                <li><a href="./index.html#task">Revisar tareas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="add">
+            <h2>Alista tus tareas mejor y rapidamente</h2>
+            <h3>¿Que desea hacer?</h3>
+            <h3>Añade una tarea nueva</h3>
+            <form action="./index.html">
+                <label for="userName">Nombre *</label>
+                <input type="text" id="userName" required>
+                <label for="taskTtl">Titulo *</label>
+                <input type="text" id="taskTtl" required>
+                <label for="taskDate">Fecha *</label>
+                <input type="datetime" id="taskDate">
+                <label for="taskDesc">Descripcion</label>
+                <textarea name="description" id="taskDesc"></textarea>
+                <input type="submit" value="Agregar" class="optBtn" placeholder="Agregar tarea">
+            </form>
+        </section>
+        <section id="tasks">
+
+        </section>
+    </main>
+    <footer>
+        <p></p>
+    </footer>
 </body>
 </html>
