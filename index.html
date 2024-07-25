@@ -17,25 +17,26 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="content">
         <section id="add">
             <h2>Alista tus tareas mejor y rapidamente</h2>
-            <h3>¿Que desea hacer?</h3>
             <h3>Añade una tarea nueva</h3>
-            <form action="./index.html">
+            <form action="./index.html" method="" id="addForm">
                 <label for="userName">Nombre *</label>
-                <input type="text" id="userName" required>
+                <input type="text" id="userName" class="inpsAdd" required>
                 <label for="taskTtl">Titulo *</label>
-                <input type="text" id="taskTtl" required>
+                <input type="text" id="taskTtl" class="inpsAdd" required>
                 <label for="taskDate">Fecha *</label>
-                <input type="datetime" id="taskDate">
+                <input type="date" id="taskDate" class="inpsAdd">
+                <label for="taskTime">Hora</label>
+                <input type="time" id="taskTime" class="inpsAdd" required>
                 <label for="taskDesc">Descripcion</label>
                 <textarea name="description" id="taskDesc"></textarea>
-                <input type="submit" value="Agregar" class="optBtn" placeholder="Agregar tarea">
+                <input type="submit" value="Agregar" id="addBtn" placeholder="Agregar tarea">
             </form>
         </section>
         <section id="tasks">
-
+            <h2>Aquí verás un listado de las tareas que han creado</h2>
         </section>
     </main>
     <footer>
