@@ -151,6 +151,7 @@ form label {
     border: 1px solid #ffffff;
     font-size: 1rem;
     border-radius: 5px;
+    cursor: pointer;
 }
 .compBtn {
     margin-top: 0.5rem;
