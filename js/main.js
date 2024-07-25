@@ -1,6 +1,5 @@
 let addForm = document.getElementById("addForm")
-const tasks = []
-
+const taskStorage = JSON.parse(localStorage.getItem("tasks")) || []
 
 /* FUNCION PRINCIPAL */
 let getFormDates = function() {
@@ -13,7 +12,9 @@ let getFormDates = function() {
         descrp = "No contiene descripción"
     }
     addTask(user, ttl, date, tim, descrp)
+    showTask()
 }
+
 
 addForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -31,14 +32,8 @@ function addTask(user, ttl, date, tim, desc) {
         creator: user,
         completed: false
     };
-    tasks.push(task);
-    let container = document.createElement("div")
-    debugger
-    container.className = "taskCard task"
-    debugger
-    container.innerHTML =  `<h4>$[task.ttl]</h4>
-                            <p>$[task.date]<br>$[task.time]<br>$[task.descrip]<br>Creado por $[task.creator]<br>No completa</p>`
-    debugger
+    taskStorage.push(task);
+    localStorage.setItem("tasks", JSON.stringify(taskStorage))
 }
 
 
@@ -62,8 +57,13 @@ function compTask() {
 }
 
 
-function revTask() {
-    for(let i = 0 ; i < tasks.length; i++) {
-        console.log(tasks[i].name)
-    }
+function showTask() {
+    let tasksCont = document.getElementById("taskCont")
+    taskStorage.forEach (task => {
+        const card = document.createElement("div")
+        card.className = "taskCard"
+        card.innerHTML  =  `<h4>${task.name}</h4>
+                            <p>${task.date}<br>${task.time}<br>${task.descrp}<br>Creado por ${task.creator}<br>No completa</p>`
+        tasksCont.appendChild(card)
+    })
 }
