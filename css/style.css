@@ -125,7 +125,7 @@ form label {
 .taskCard {
     display: flex;
     width: 70%;
-    max-height: 200px;
+    max-height: 450px;
     height: auto;
     align-items: center;
     justify-content: center;
@@ -142,6 +142,18 @@ form label {
 .taskCard p {
     font-family: "Kanit", sans-serif;
     font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+.delBtn, .compBtn {
+    font-family: "Kanit";
+    background-color: #6756ff;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+.compBtn {
+    margin-top: 0.5rem;
 }
 
 
@@ -152,9 +164,10 @@ footer {
     display: flex;
     align-items: center;
     padding: 0 16px;
+    justify-content: center;
 }
 footer p {
     color: #ffffff;
     font-family: "Poppins", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.18rem;
 }

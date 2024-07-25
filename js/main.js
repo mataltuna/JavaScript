@@ -1,7 +1,8 @@
 let addForm = document.getElementById("addForm")
+let taskId = JSON.parse(localStorage.getItem("taskId")) || 0;
 const taskStorage = JSON.parse(localStorage.getItem("tasks")) || []
 
-/* FUNCION PRINCIPAL */
+/* FUNCIONES PRINCIPAL */
 let getFormDates = function() {
     let user = document.getElementById("userName").value
     let ttl = document.getElementById("taskTtl").value
@@ -15,6 +16,13 @@ let getFormDates = function() {
     showTask()
 }
 
+let taskInfo = function(event) {
+    if (event.target.classList.contains("delBtn")) {
+        delTask(event.target.id)
+    } else if (event.target.classList.contains("compBtn")) {
+        compTask(event.target.id)
+    }
+}
 
 addForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -25,6 +33,7 @@ addForm.addEventListener("submit", (event) => {
 /* FUNCIONES ESPECIFICAS */
 function addTask(user, ttl, date, tim, desc) {
     let task = {
+        id: taskId++,
         name: ttl,
         descrp: desc,
         date: date,
@@ -33,37 +42,38 @@ function addTask(user, ttl, date, tim, desc) {
         completed: false
     };
     taskStorage.push(task);
+    localStorage.setItem("taskId", JSON.stringify(taskId))
     localStorage.setItem("tasks", JSON.stringify(taskStorage))
+    showTask()
 }
 
-
-function delTask() {
-    do {
-        let delName = prompt("Ingrese el nombre de la tarea").toUpperCase();
-        let delId = tasks.indexOf([delName]);
-        tasks.pop(delId);
-        console.log("Se eliminó la tarea correctamente");
-    } while (confirm("¿Desea eliminar otra?"))
+function delTask(taskId) {
+    let taskIndex = taskStorage.findIndex(task => task.id == taskId)
+    taskStorage.splice(taskIndex, 1);
+    localStorage.setItem("tasks", JSON.stringify(taskStorage));
+    showTask()
 }
 
-
-function compTask() {
-    do {
-        let compName = prompt("Ingrese el nombre de la tarea").toUpperCase()
-        let compId = tasks.indexOf([compName])
-        tasks[compId.completed] = true
-        console.log("Se completada la tarea exitosamente")
-    } while (confirm("¿Desea marcar como completada otra?"))
+function compTask(taskId) {
+    let task = taskStorage.find(task => task.id == taskId)
+    task.completed = true
+    localStorage.setItem("tasks", JSON.stringify(taskStorage));
+    showTask()
 }
-
 
 function showTask() {
     let tasksCont = document.getElementById("taskCont")
+    tasksCont.innerHTML = ''
     taskStorage.forEach (task => {
         const card = document.createElement("div")
         card.className = "taskCard"
         card.innerHTML  =  `<h4>${task.name}</h4>
-                            <p>${task.date}<br>${task.time}<br>${task.descrp}<br>Creado por ${task.creator}<br>No completa</p>`
+                            <p>${task.date}<br>${task.time}<br>${task.descrp}<br>Creado por ${task.creator}<br>${task.completed ? 'Completa' : 'No completa'}</p>
+                            <button class="delBtn" id="${task.id}">Eliminar</button>
+                            ${task.completed ? '' : `<button class="compBtn" id="${task.id}">Marcar como completada</button>`}`
         tasksCont.appendChild(card)
     })
+    tasksCont.addEventListener("click", taskInfo);
 }
+
+document.addEventListener('DOMContentLoaded', showTask);
