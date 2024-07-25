@@ -62,7 +62,7 @@ function compTask(taskId) {
 }
 
 function showTask() {
-    let tasksCont = document.getElementById("taskCont")
+    let tasksCont = document.getElementById("taskCont").addEventListener("click", taskInfo);
     tasksCont.innerHTML = ''
     taskStorage.forEach (task => {
         const card = document.createElement("div")
@@ -73,7 +73,6 @@ function showTask() {
                             ${task.completed ? '' : `<button class="compBtn" id="${task.id}">Marcar como completada</button>`}`
         tasksCont.appendChild(card)
     })
-    tasksCont.addEventListener("click", taskInfo);
 }
 
 document.addEventListener('DOMContentLoaded', showTask);
