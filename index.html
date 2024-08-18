@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="./js/main.js"></script>
     <title>TaskTick</title>
 </head>
 <body>
@@ -12,8 +13,8 @@
         <h1>TaskTick</h1>
         <nav>
             <ul id="headNav">
-                <li><a href="./index.html#add">Añadir tarea</a></li>
-                <li><a href="./index.html#tasks">Revisar tareas</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./pages/login.html">Iniciar sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -23,16 +24,16 @@
             <h3>Añade una tarea nueva</h3>
             <form action="./index.html" method="" id="addForm">
                 <label for="userName">Nombre *</label>
-                <input type="text" id="userName" class="inpsAdd" required>
+                <input type="text" id="userName" class="inps" required>
                 <label for="taskTtl">Titulo *</label>
-                <input type="text" id="taskTtl" class="inpsAdd" required>
+                <input type="text" id="taskTtl" class="inps" required>
                 <label for="taskDate">Fecha *</label>
-                <input type="date" id="taskDate" class="inpsAdd">
+                <input type="date" id="taskDate" class="inps">
                 <label for="taskTime">Hora</label>
-                <input type="time" id="taskTime" class="inpsAdd" required>
+                <input type="time" id="taskTime" class="inps" required>
                 <label for="taskDesc">Descripcion</label>
                 <textarea name="description" id="taskDesc" maxlength="265"></textarea>
-                <input type="submit" value="Agregar" id="addBtn" placeholder="Agregar tarea">
+                <input type="submit" value="Agregar" class="formBtn" id="addBtn" placeholder="Agregar tarea">
             </form>
         </section>
         <section id="tasks">

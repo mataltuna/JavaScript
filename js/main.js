@@ -1,6 +1,7 @@
 let addForm = document.getElementById("addForm")
 let taskId = JSON.parse(localStorage.getItem("taskId")) || 0;
 const taskStorage = JSON.parse(localStorage.getItem("tasks")) || []
+showTask()
 
 /* FUNCIONES PRINCIPAL */
 let getFormDates = function() {
@@ -16,12 +17,27 @@ let getFormDates = function() {
     showTask()
 }
 
-let taskInfo = function(event) {
+function taskInfo(event) {
     if (event.target.classList.contains("delBtn")) {
-        delTask(event.target.id)
+        delTask(event.target.id);
     } else if (event.target.classList.contains("compBtn")) {
-        compTask(event.target.id)
+        compTask(event.target.id);
     }
+}
+
+function showTask() {
+    let tasksCont = document.getElementById("taskCont")
+    tasksCont.innerHTML = ''
+    taskStorage.forEach (task => {
+        const card = document.createElement("div")
+        card.className = "taskCard"
+        card.innerHTML  =  `<h4>${task.name}</h4>
+                            <p>${task.date}<br>${task.time}<br>${task.descrp}<br>Creado por ${task.creator}<br>${task.completed ? 'Completa' : 'No completa'}</p>
+                            <button class="delBtn" id="${task.id}">Eliminar</button>
+                            ${task.completed ? '' : `<button class="compBtn" id="${task.id}">Marcar como completada</button>`}`
+        tasksCont.appendChild(card)
+    })
+    tasksCont.addEventListener("click", taskInfo);
 }
 
 addForm.addEventListener("submit", (event) => {
@@ -60,20 +76,3 @@ function compTask(taskId) {
     localStorage.setItem("tasks", JSON.stringify(taskStorage));
     showTask()
 }
-
-function showTask() {
-    let tasksCont = document.getElementById("taskCont")
-    tasksCont.innerHTML = ''
-    taskStorage.forEach (task => {
-        const card = document.createElement("div")
-        card.className = "taskCard"
-        card.innerHTML  =  `<h4>${task.name}</h4>
-                            <p>${task.date}<br>${task.time}<br>${task.descrp}<br>Creado por ${task.creator}<br>${task.completed ? 'Completa' : 'No completa'}</p>
-                            <button class="delBtn" id="${task.id}">Eliminar</button>
-                            ${task.completed ? '' : `<button class="compBtn" id="${task.id}">Marcar como completada</button>`}`
-        tasksCont.appendChild(card)
-    })
-    tasksCont.addEventListener("click", taskInfo);
-}
-
-document.addEventListener('DOMContentLoaded', showTask);
