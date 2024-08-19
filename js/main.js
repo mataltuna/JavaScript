@@ -19,7 +19,11 @@ let getFormDates = async function() {
         addTask(user, ttl, date, tim, descrp)
         showTask()
     } else {
-        console.log("chupala")
+        Swal.fire({
+            title: "Ups...",
+            text: "Debes iniciar sesion para poder continuar",
+            icon: "error"
+        })
     }
 }
 
