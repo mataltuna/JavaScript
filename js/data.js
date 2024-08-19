@@ -1,5 +1,6 @@
 let loginBtn = document.getElementById("btnLogin")
 let form = document.getElementById("loginForm")
+let isLoggedIn = false
 let conJSON = async function() {
     try {
     let response = await fetch("./../db/data.json");
@@ -15,7 +16,6 @@ let conJSON = async function() {
 }
 let login = function() {
     try {
-        debugger
         form.addEventListener('submit', async function(event){
             event.preventDefault()
             const datos = await conJSON()
@@ -23,11 +23,15 @@ let login = function() {
             let userPass = document.getElementById('usPass').value
             const userFind = datos.find(u => u.email == userMail && u.passw == userPass)
             if (userFind) {
+                localStorage.setItem('isLoggedIn', 'true');
                 Swal.fire({
                     title: "Inicio de Sesion exitoso!",
                     text: "Disfruta de las posibilidades",
                     icon: "success"
                 })
+                setTimeout(() => {
+                    window.location.href = "./../index.html"
+                }, 2000);
             } else {
                 Swal.fire({
                     title: "Ups...",
@@ -44,5 +48,6 @@ let login = function() {
         })
     }
 }
-
-loginBtn.addEventListener("click", login())
+if(loginBtn){
+    loginBtn.addEventListener('click', login())
+}

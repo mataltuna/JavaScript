@@ -44,7 +44,7 @@ h1{
 #content, #content2 {
     background: linear-gradient(to bottom, #626dd6, #2c3377)
 }
-#add, #tasks, #saveTask {
+#add, #tasks, #login {
     padding: 1.6rem 1.4rem;
     color: #ffffff;
 }
@@ -144,7 +144,7 @@ form label {
     font-size: 1.2rem;
     margin-bottom: 0.7rem;
 }
-.delBtn, .logBtn {
+.delBtn, .compBtn {
     font-family: "Kanit";
     background-color: #6756ff;
     color: #ffffff;
@@ -153,22 +153,25 @@ form label {
     border-radius: 5px;
     cursor: pointer;
 }
-.compBtn, .saveBtn {
+.compBtn {
     margin-top: 0.5rem;
 }
 
 
 /* Login */
 #login {
-    min-height: 81.068vh;
+    min-height: 74.297vh;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 5rem;
+    gap: 100px;
 }
-#loginForm {
-    padding-top: 90px;
+#login h2 {
+    font-size: 4rem;
 }
+
 
 
 /*Footer*/

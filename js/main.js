@@ -4,17 +4,23 @@ const taskStorage = JSON.parse(localStorage.getItem("tasks")) || []
 showTask()
 
 /* FUNCIONES PRINCIPAL */
-let getFormDates = function() {
-    let user = document.getElementById("userName").value
-    let ttl = document.getElementById("taskTtl").value
-    let date = document.getElementById("taskDate").value
-    let tim = document.getElementById("taskTime").value
-    let descrp = document.getElementById("taskDesc").value
-    if(!descrp) {
-        descrp = "No contiene descripción"
+let getFormDates = async function() {
+    let isLoggedIn = localStorage.getItem('isLoggedIn');
+    if(isLoggedIn == 'true'){
+        let data = await conJSON()
+        let user = data[0].name
+        let ttl = document.getElementById("taskTtl").value
+        let date = document.getElementById("taskDate").value
+        let tim = document.getElementById("taskTime").value
+        let descrp = document.getElementById("taskDesc").value
+        if(!descrp) {
+            descrp = "No contiene descripción"
+        }
+        addTask(user, ttl, date, tim, descrp)
+        showTask()
+    } else {
+        console.log("chupala")
     }
-    addTask(user, ttl, date, tim, descrp)
-    showTask()
 }
 
 function taskInfo(event) {
